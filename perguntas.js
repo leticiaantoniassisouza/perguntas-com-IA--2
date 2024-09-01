@@ -21,10 +21,10 @@ export const perguntas = [
         ]
     },
     {
-        enunciado: "Qual é o nome do mundo onde Elden Ring se passa?",
+        enunciado: "Quem é o personagem principal do jogo?",
         alternativas: [
             {
-                texto: "Godrick, o Enxertado",
+                texto: "O Cavaleiro",
                 afirmacao: [
                     "Errado",
                     "",
@@ -33,7 +33,7 @@ export const perguntas = [
                 proxima: 3,
             },
             {
-                texto: "Margit, o Agouro Caído",
+                texto: "O Sinluz (Tarnished)",
                 afirmacao: [
                     "Certo",
                     "",
@@ -44,21 +44,21 @@ export const perguntas = [
         ]
     },
     {
-        enunciado: "",
+        enunciado: "Qual desses é um dos principais chefes em Elden Ring?",
         alternativas: [
             {
-                texto: "",
+                texto: "Gwyn, Lord of Cinder",
                 afirmacao: [
-                    "",
+                    "Errado",
                     "",
                     ""
                 ],
                 proxima: 3,
             },
             {
-                texto: "",
+                texto: "Malenia, Blade of Miquella",
                 afirmacao: [
-                    "",
+                    "Certo",
                     "",
                     ""
                 ],
@@ -67,20 +67,20 @@ export const perguntas = [
         ]
     },
     {
-        enunciado: "",
+        enunciado: "Qual é a natureza de Radahn, um dos grandes chefes do jogo?",
         alternativas: [
             {
-                texto: "",
+                texto: "Um guerreiro gigante",
                 afirmacao: [
-                    "",
+                    "Certo",
                     ""
                 ],
                 proxima: 5,
             },
             {
-                texto: "",
+                texto: "Um cavaleiro celestial",
                 afirmacao: [
-                    "",
+                    "Errado",
                     ""
                 ],
                 proxima: 6,
@@ -88,20 +88,20 @@ export const perguntas = [
         ]
     },
     {
-        enunciado: "",
+        enunciado: "Qual renomado autor de fantasia colaborou com a FromSoftware para criar a lore de Elden Ring?",
         alternativas: [
             {
-                texto: "",
+                texto: "George R. R. Martin",
                 afirmacao: [
-                    "",
+                    "Certo",
                     ""
                 ],
                 proxima: 5,
             },
             {
-                texto: "",
+                texto: " J.K. Rowling",
                 afirmacao: [
-                    "",
+                    "Errado",
                     ""
                 ],
                 proxima: 6,
@@ -109,20 +109,20 @@ export const perguntas = [
         ]
     },
     {
-        enunciado: "",
+        enunciado: "Qual é a função das Sites of Grace no jogo?",
         alternativas: [
             {
-                texto: "",
+                texto: "Áreas seguras onde inimigos não podem atacar",
                 afirmacao: [
-                    "",
+                    "Errado",
                     ""
                 ],
                 proxima: 7,
             },
             {
-                texto: "",
+                texto: "Pontos de recuperação de HP e FP, e lugares para subir de nível",
                 afirmacao: [
-                    "",
+                    "Certo",
                     ""
                 ],
                 proxima: 7,
@@ -130,20 +130,20 @@ export const perguntas = [
         ]
     },
     {
-        enunciado: "",
+        enunciado: "Qual é o nome do mundo em que se passa Elden Ring?",
         alternativas: [
             {
-                texto: "",
+                texto: " Drangleic",
                 afirmacao: [
-                    "",
+                    "Errado",
                     ""
                 ],
                 proxima: 7,
             },
             {
-                texto: "",
+                texto: "The Lands Between",
                 afirmacao: [
-                    "",
+                    "Certo",
                     ""
                 ],
                 proxima: 7,
@@ -151,21 +151,21 @@ export const perguntas = [
         ]
     },
     {
-        enunciado: "",
+        enunciado: "Qual dos seguintes jogos da FromSoftware possui referências e semelhanças notáveis com Elden Ring?",
         alternativas: [
             {
-                texto: "",
+                texto: "Bloodborne",
                 afirmacao: [
-                    "",
+                    "Errado",
                     ""
                 ],
             },
             {
-                texto: "",
+                texto: " Dark Souls",
                 afirmacao: [
-                    "",
-                    "",
-                    ""
+                    "Certo",
+                    "Temos um expert em Elden Ring por aqui!",
+                    "Parábens jovem rapaz gamer!"
                 ],
             },
         ]
