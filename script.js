@@ -1,5 +1,4 @@
 import { aleatorio, nome } from './aleatorio.js';
-import { perguntas } from './perguntas.js';
 
 const caixaPrincipal = document.querySelector(".caixa-principal");
 const caixaPerguntas = document.querySelector(".caixa-perguntas");
@@ -10,77 +9,81 @@ const botaoJogarNovamente = document.querySelector(".novamente-btn");
 const botaoIniciar = document.querySelector(".iniciar-btn");
 const telaInicial = document.querySelector(".tela-inicial");
 
-let atual = 0;
-let historiaFinal = "";
+const perguntas = [
+    {
+        enunciado: "Quem foi o principal criador de Elden Ring?",
+        alternativas: [
+            { texto: "Hidetaka Miyazaki", certo: true },
+            { texto: "Hironobu Sakaguchi", certo: false }
+        ]
+    },
+    {
+        enunciado: "Quem é o personagem principal do jogo?",
+        alternativas: [
+            { texto: "O Cavaleiro", certo: false },
+            { texto: "O Sinluz (Tarnished)", certo: true }
+        ]
+    },
+    {
+        enunciado: "Qual desses é um dos principais chefes em Elden Ring?",
+        alternativas: [
+            { texto: "Gwyn, Lord of Cinder", certo: false },
+            { texto: "Malenia, Blade of Miquella", certo: true }
+        ]
+    }
+];
 
-// Verificação de elementos DOM
-if (!botaoIniciar || !caixaPerguntas || !caixaAlternativas || !caixaResultado) {
-  console.error("Alguns elementos necessários não foram encontrados no DOM.");
-}
+let indicePerguntaAtual = 0;
+let pontuacao = 0;
 
-botaoIniciar?.addEventListener('click', iniciaJogo);
+botaoIniciar.addEventListener('click', iniciaJogo);
 
 function iniciaJogo() {
-  atual = 0;
-  historiaFinal = "";
-  telaInicial.style.display = 'none';
-  caixaPerguntas.classList.remove("mostrar");
-  caixaAlternativas.classList.remove("mostrar");
-  caixaResultado.classList.remove("mostrar");
-  mostraPergunta();
+    indicePerguntaAtual = 0;
+    pontuacao = 0;
+    telaInicial.style.display = 'none';
+    caixaResultado.style.display = 'none';
+    mostraPergunta();
 }
 
 function mostraPergunta() {
-  if (atual >= perguntas.length) {
-    mostraResultado();
-    return;
-  }
-  const perguntaAtual = perguntas[atual];
-  caixaPerguntas.textContent = perguntaAtual.enunciado;
-  caixaAlternativas.innerHTML = ""; // Limpar alternativas anteriores
-  mostraAlternativas(perguntaAtual);
+    // Se todas as perguntas foram respondidas, mostra o resultado
+    if (indicePerguntaAtual >= perguntas.length) {
+        mostraResultado();
+        return;
+    }
+
+    const perguntaAtual = perguntas[indicePerguntaAtual];
+    caixaPerguntas.textContent = perguntaAtual.enunciado;
+    caixaAlternativas.innerHTML = ""; // Limpa alternativas anteriores
+
+    // Gera alternativas
+    perguntaAtual.alternativas.forEach((alternativa, index) => {
+        const botao = document.createElement("button");
+        botao.textContent = alternativa.texto;
+        botao.classList.add("alternativa-btn");
+        botao.addEventListener("click", () => verificaResposta(alternativa.certo));
+        caixaAlternativas.appendChild(botao);
+    });
 }
 
-function mostraAlternativas(perguntaAtual) {
-  perguntaAtual.alternativas.forEach((alternativa) => {
-    const botaoAlternativa = document.createElement("button");
-    botaoAlternativa.textContent = alternativa.texto;
-    botaoAlternativa.addEventListener("click", () => respostaSelecionada(alternativa));
-    caixaAlternativas.appendChild(botaoAlternativa);
-  });
-}
+function verificaResposta(respostaCerta) {
+    if (respostaCerta) {
+        pontuacao++;
+    }
 
-function respostaSelecionada(opcaoSelecionada) {
-  const afirmacao = aleatorio(opcaoSelecionada.afirmacao);
-  historiaFinal += afirmacao + " ";
-  if (opcaoSelecionada.proxima !== undefined) {
-    atual = opcaoSelecionada.proxima;
+    indicePerguntaAtual++;
     mostraPergunta();
-  } else {
-    mostraResultado();
-  }
 }
 
 function mostraResultado() {
-  caixaPerguntas.textContent = `Em 2049, ${nome}`;
-  textoResultado.textContent = historiaFinal.trim();
-  caixaAlternativas.innerHTML = ""; // Limpar alternativas
-  caixaResultado.classList.add("mostrar");
-  botaoJogarNovamente?.addEventListener("click", jogaNovamente);
+    caixaPerguntas.textContent = "Fim do jogo!";
+    textoResultado.textContent = `Você acertou ${pontuacao} de ${perguntas.length} perguntas!`;
+    caixaAlternativas.innerHTML = "";
+    caixaResultado.style.display = 'block';
 }
 
-function jogaNovamente() {
-  atual = 0;
-  historiaFinal = "";
-  caixaResultado.classList.remove("mostrar");
-  mostraPergunta();
-}
-
-// Atualizar perguntas com o nome do jogador
-function substituiNome() {
-  perguntas.forEach((pergunta) => {
-    pergunta.enunciado = pergunta.enunciado.replace(/você/g, nome);
-  });
-}
-
-substituiNome();
+botaoJogarNovamente.addEventListener('click', () => {
+    telaInicial.style.display = 'flex';
+    caixaResultado.style.display = 'none';
+});
